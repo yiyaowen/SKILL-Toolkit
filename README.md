@@ -1,2 +1,2 @@
 # SKILL-Toolkit
-Useful SKILL scripts for those who working with Cadence Virtuoso.
+Useful SKILL scripts for those who work with Cadence Virtuoso.
