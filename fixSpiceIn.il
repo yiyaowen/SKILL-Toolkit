@@ -8,7 +8,7 @@
 ;   Specifies the library you want to fix.
 ;
 ; - Examples:
-;   fixSpiceIn("UMC28_BOAC_2A_1031")
+;   fixSpiceIn("UMC28_BOAC_2A")
 ;
 procedure(fixSpiceIn(libName)
     cells = ddGetObj(libName)~>cells
