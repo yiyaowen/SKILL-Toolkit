@@ -1,0 +1,2 @@
+SOFTINCLUDE $CDSHOME/share/cdssetup/cds.lib
+SOFTINCLUDE $XCELIUMDIR/tools/affirma_ams/etc/connect_lib/cds.lib

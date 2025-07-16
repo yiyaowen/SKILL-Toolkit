@@ -1,0 +1,50 @@
+;------------------------------------;
+; Virtuoso .cdsinit Template         ;
+; Copyleft (c) wenyiyao23@semi.ac.cn ;
+;------------------------------------;
+
+;--------------------------------------------------------------------------------------------------
+; Launch Library Manager and move CIW to the desired position.
+;--------------------------------------------------------------------------------------------------
+
+ddsOpenLibManager()
+hiResizeWindow(window(1) list(1040:20 1920:1030))
+
+;--------------------------------------------------------------------------------------------------
+; Load the Calibre DRC/LVS verification toolkit.
+;--------------------------------------------------------------------------------------------------
+
+load("/eda/mentor/calibre/aoi_cal_2020.2_14.12/shared/pkgs/icv/tools/queryskl/calibre.skl")
+
+;--------------------------------------------------------------------------------------------------
+; This will force opening text files (e.g. verilog) with specified external editor.
+;--------------------------------------------------------------------------------------------------
+
+;editor="gedit"
+;envSetVal("textedit" "useExternalEditor" 'boolean t)
+
+;--------------------------------------------------------------------------------------------------
+; This will prompt you to update the CDF term order any time the pins are changed in the symbol.
+;--------------------------------------------------------------------------------------------------
+
+envSetVal("auCore.misc" "updateCDFtermOrder" 'boolean t)
+
+; In most cases, this flag does not need to be set.
+;envSetVal("auCore.misc" "queryCDFtermOrder" 'boolean t)
+
+;--------------------------------------------------------------------------------------------------
+; Configure the ADE simulation working directory in Virtuoso.
+;--------------------------------------------------------------------------------------------------
+
+envSetVal("asimenv.startup" "projectDir" 'string "simulation")
+
+;--------------------------------------------------------------------------------------------------
+; Customize the default waveform viewer settings in ADE (ViVA).
+;--------------------------------------------------------------------------------------------------
+
+envSetVal("viva.trace" "lineStyle" 'string "solid")
+envSetVal("viva.trace" "lineThickness" 'string "fine")
+
+; We need to set this flag to enable trace settings above.
+; Otherwise, ViVA uses the display.drf provided by the PDK.
+;envSetVal("asimenv.plotting" "useDisplayDrf" 'boolean nil)
