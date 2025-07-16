@@ -24,18 +24,17 @@
 ;   Specifies libraries that you do not want to search.
 ;   This could be the external libraries in your workspace,
 ;   such as the PDK libraries (SMIC, TSMC, UMC etc.).
-;   In addition, most of the system libraries of Virtuoso
+;   In addition, most of the system libraries of Cadence
 ;   have already been excepted by default (see the code below).
 ;
 ; - Notes:
-;   1. Only cellviews that match both cvNames and cvTypes will be saved.
-;   2. If both of @libNames and @exceptLibNames are specified, only @libNames will be searched.
+;   #. When @libNames is specified, @exceptLibNames will be ignored.
 ;
 ; - Examples:
-;   1. saveSchematics # this saves all schematics
+;   1. saveSchematics ; saves all schematics
 ;   2. saveSchematics(?libNames '("Workspace"))
 ;   3. saveSchematics(?exceptLibNames '("umc28hpc"))
-;   4. saveSchematics(?names '("schematic" "schematic_raw") ?libNames '("Workspace"))
+;   4. saveSchematics(?names '("schematic" "schematic_raw"))
 ;
 procedure(saveSchematics(@key (names '("schematic")) (libNames '()) (exceptLibNames '()))
     targetLibNames = libNames
@@ -57,7 +56,7 @@ procedure(saveSchematics(@key (names '("schematic")) (libNames '()) (exceptLibNa
         foreach(cell cells
             foreach(name names
                 if(openCell = car(errset(
-                    dbOpenCellViewByType(libName cell~>name name "" "a")))
+                    dbOpenCellViewByType(libName cell~>name name nil "a")))
                 then
                     if(schCheck(openCell) != '(0 0)
                     then

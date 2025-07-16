@@ -13,20 +13,26 @@
 procedure(fixSpiceIn(libName)
     cells = ddGetObj(libName)~>cells
     foreach(cell cells
-        when(cv = dbOpenCellViewByType(libName cell~>name "schematic" "" "a")
+        when(cv = dbOpenCellViewByType(libName cell~>name "schematic" nil "a")
             insts = cv->instances
             foreach(inst insts
+                ;-----------------------------------------------------------
+                ; Customize your mapping rules BELOW
+                ;-----------------------------------------------------------
                 when(
                     inst->cellName == "P_1P8" ||
                     inst->cellName == "N_1P8" ||
                     inst->cellName == "P_SVT" ||
                     inst->cellName == "N_SVT"
-                    ; you can customize your mapping rules below
+                    ; adding the missing unit "u" for these parameters
                     inst->m = evalstring(strcat(artMakeString(inst->M) ""))
                     inst->l = evalstring(strcat(artMakeString(inst->L) "u"))
                     inst->w = evalstring(strcat(artMakeString(inst->W) "u"))
                     inst->fw = evalstring(strcat(artMakeString(inst->W) "u"))
                 )
+                ;-----------------------------------------------------------
+                ; Customize your mapping rules ABOVE
+                ;-----------------------------------------------------------
             )
             schCheck(cv)
             dbSave(cv)
