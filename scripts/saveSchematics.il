@@ -52,11 +52,11 @@ procedure(saveSchematics(@key (names '("schematic")) (libNames '()) (exceptLibNa
         )
     )
     foreach(libName targetLibNames
-        cells = ddGetObj(libName)~>cells
+        cells = ddGetObj(libName)->cells
         foreach(cell cells
             foreach(name names
                 if(openCell = car(errset(
-                    dbOpenCellViewByType(libName cell~>name name nil "a")))
+                    dbOpenCellViewByType(libName cell->name name nil "a")))
                 then
                     if(schCheck(openCell) != '(0 0)
                     then
@@ -67,7 +67,7 @@ procedure(saveSchematics(@key (names '("schematic")) (libNames '()) (exceptLibNa
                     )
                     if(dbSave(openCell) == nil
                     then
-                        printf("%s: dbSave failed\n" cell~>name)
+                        printf("%s: dbSave failed\n" cell->name)
                     )
                     dbClose(openCell)
                 )

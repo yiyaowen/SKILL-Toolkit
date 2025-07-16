@@ -11,9 +11,9 @@
 ;   fixSpiceIn("UMC28_BOAC_2A")
 ;
 procedure(fixSpiceIn(libName)
-    cells = ddGetObj(libName)~>cells
+    cells = ddGetObj(libName)->cells
     foreach(cell cells
-        when(cv = dbOpenCellViewByType(libName cell~>name "schematic" nil "a")
+        when(cv = dbOpenCellViewByType(libName cell->name "schematic" nil "a")
             insts = cv->instances
             foreach(inst insts
                 ;-----------------------------------------------------------
