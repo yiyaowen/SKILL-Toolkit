@@ -50,7 +50,8 @@ procedure(_getInstCountRecurse(cv cellName)
             when(member("schematic" dbAllCellViews(ddGetObj(inst->libName) inst->cellName))
                 when(cv2 = dbOpenCellViewByType(inst->libName inst->cellName "schematic" nil "r")
                     instCount += subInstMulti * _getInstCountRecurse(cv2 cellName)
-                    dbClose(cv2)
+                    ; Not clear why dbClose can crash here. Add an errset to ignore it.
+                    errset(dbClose(cv2)) ; *Error* dbClose: Invalid cellView - db:0x6db84a1a
                 )
             )
         )
@@ -68,6 +69,6 @@ procedure(countInstance(name @optional (libName nil) (topName nil))
     when(cv
         instCount = _getInstCountRecurse(cv name)
         printf("Total (%d) %s found", instCount, name)
-        when(topName && libName dbClose(cv))
+        when(topName && libName errset(dbClose(cv)))
     )
 )
