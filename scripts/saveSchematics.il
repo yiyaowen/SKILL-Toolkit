@@ -5,8 +5,6 @@
 ;
 ;---------------------------------------------------------------------------
 ;
-; saveSchematics.il
-;
 ; Saves all matched schematics in your workspace by name.
 ; For example, use it after renumbering instances in your workspace
 ; to make sure the changed schematics are saved properly before exiting.
