@@ -20,8 +20,8 @@ if [ $? -eq 0 ]
 then
     path2=$(pwd)
     echo -e "\e[1;32mOK\e[0m: Updating modelSetup.state @ ${path2}"
-    find ${path2} -type f -name "modelSetup.state" | while read -r line; do
-        sed -i "s/${2}/${3}/g" "$line"
+    find ${path2} -type f -name "modelSetup.state" | while read -r file; do
+        sed -i "s/${2}/${3}/g" "$file"
     done
 else
     echo -e "\e[1;31mFailed\e[0m: No modelSetup.state is updated due to the above error(s)."
