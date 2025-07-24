@@ -6,10 +6,10 @@
 ;---------------------------------------------------------------------------
 ;
 ; - Examples:
-;   fixSpiceIn("tsmc18aio6mt")
+;   fixSpiceInParams("tsmc18aio6mt")
 ;
 ;---------------------------------------------------------------------------
-procedure(fixSpiceIn(libName)
+procedure(fixSpiceInParams(libName)
     foreach(cell ddGetObj(libName)->cells
         when(cv = dbOpenCellViewByType(libName cell->name "schematic" nil "a")
             foreach(inst cv->instances
