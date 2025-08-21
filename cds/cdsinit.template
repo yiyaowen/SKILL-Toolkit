@@ -20,7 +20,7 @@ load("/eda/mentor/calibre/aoi_cal_2020.2_14.12/shared/pkgs/icv/tools/queryskl/ca
 ; This will force opening text files (e.g. verilog) with specified external editor.
 ;--------------------------------------------------------------------------------------------------
 
-;editor="gedit"
+editor="gedit"
 ;envSetVal("textedit" "useExternalEditor" 'boolean t)
 
 ;--------------------------------------------------------------------------------------------------
